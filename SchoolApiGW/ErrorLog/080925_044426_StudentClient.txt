@@ -1,0 +1,5 @@
+The request message was already sent. Cannot send the same request message multiple times. |    at System.Net.Http.HttpClient.CheckRequestMessage(HttpRequestMessage request)
+   at System.Net.Http.HttpClient.CheckRequestBeforeSend(HttpRequestMessage request)
+   at System.Net.Http.HttpClient.SendAsync(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 48
+   at SchoolApiGW.Services.Students.StudentClient.UpdatePersonalDetailAsync(UpdateStudentRequestDTO request, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 1162

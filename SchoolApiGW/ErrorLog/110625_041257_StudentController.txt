@@ -1,0 +1,3 @@
+System.NotImplementedException: The method or operation is not implemented.
+   at SchoolApiGW.Services.Students.StudentClient.GetNextAdmissionNoAsync() in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 720
+   at SchoolApiGW.Services.Students.StudentController.FetchStudentInfo(Int32 actionType, String param) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentController.cs:line 122

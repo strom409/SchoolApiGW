@@ -1,0 +1,7 @@
+An error occurred while sending the request. |    at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 33
+   at SchoolApiGW.Services.Transport.TransportClient.GetStudentRouteDetails(String param, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Transport\TransportClient.cs:line 375

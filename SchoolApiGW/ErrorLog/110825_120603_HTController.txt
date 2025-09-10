@@ -1,0 +1,16 @@
+System.ApplicationException: Error occurred while fetching HT data.
+ ---> Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: {. Path '', line 1, position 1.
+   at Newtonsoft.Json.JsonTextReader.ReadStringValue(ReadType readType)
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody)
+   at SchoolApiGW.Services.HT.HTClient.getHT(String clientId)
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.HT.HTClient.getHT(String clientId)
+   at SchoolApiGW.Services.HT.HTController.GetHT(Int32 actionType)

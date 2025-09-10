@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while fetching departments.
+ ---> System.Exception: HTTP 401 - Unauthorized
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 45
+   at SchoolApiGW.Services.Departments.DepartmentsClient.getDepartments(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Departments\DepartmentsClient.cs:line 116
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Departments.DepartmentsClient.getDepartments(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Departments\DepartmentsClient.cs:line 133
+   at SchoolApiGW.Services.Departments.DepartmentsController.GetDepartmentData(Int32 actionType, Int64 id) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Departments\DepartmentsController.cs:line 133

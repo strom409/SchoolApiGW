@@ -1,0 +1,9 @@
+System.ApplicationException: Error occurred while deleting qualification ID: 10079.
+ ---> System.FormatException: Index (zero based) must be greater than or equal to zero and less than the size of the argument list.
+   at System.Text.ValueStringBuilder.AppendFormatHelper(IFormatProvider provider, String format, ReadOnlySpan`1 args)
+   at System.String.FormatHelper(IFormatProvider provider, String format, ReadOnlySpan`1 args)
+   at System.String.Format(String format, Object[] args)
+   at SchoolApiGW.Services.Qualifications.QualificationsClient.DeleteQualification(String qualificationId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Qualifications\QualificationsClient.cs:line 129
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Qualifications.QualificationsClient.DeleteQualification(String qualificationId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Qualifications\QualificationsClient.cs:line 149
+   at SchoolApiGW.Services.Qualifications.QualificationsController.DeleteQualification(Int32 actionType, String id) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Qualifications\QualificationsController.cs:line 187

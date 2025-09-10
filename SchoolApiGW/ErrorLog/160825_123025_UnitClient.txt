@@ -1,0 +1,1 @@
+Object reference not set to an instance of an object. |    at SchoolApiGW.Services.Units.UnitsClient.GetAllUnits(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Units\UnitsClient.cs:line 53

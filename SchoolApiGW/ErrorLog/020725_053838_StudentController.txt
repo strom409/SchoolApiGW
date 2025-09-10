@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while adding a new student.
+ ---> System.Exception: API error occurred
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.Students.StudentClient.AddStudentAsync(AddStudentRequestDTO request, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 32
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Students.StudentClient.AddStudentAsync(AddStudentRequestDTO request, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 45
+   at SchoolApiGW.Services.Students.StudentController.AddStudent(Int32 actionType, AddStudentRequestDTO request) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentController.cs:line 42

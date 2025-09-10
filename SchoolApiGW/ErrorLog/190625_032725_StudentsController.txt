@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while retrieving student by name.
+ ---> System.Exception: API error occurred
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.Students.CrescentStudentClient.GetStudentsByName(String name, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\CrescentStudentClient.cs:line 448
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Students.CrescentStudentClient.GetStudentsByName(String name, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\CrescentStudentClient.cs:line 474
+   at SchoolApiGW.Services.Students.CrescentStudentController.Get(Int32 actionType, String param1, String param2) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\CrescentStudentController.cs:line 121

@@ -1,0 +1,2 @@
+Failed to deserialize API response. See error logs for details. |    at SchoolApiGW.Helper.ApiHelper.ApiConnectionss[TResponse](HttpClient client, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 107
+   at SchoolApiGW.Services.Students.StudentClient.GetStudentsByClassAsync(Int64 classId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 206

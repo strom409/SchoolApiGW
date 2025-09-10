@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while deleting class.
+ ---> System.Exception: Students are assigned to this class.
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.DeleteClass(Int32 classId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 230
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.DeleteClass(Int32 classId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 242
+   at SchoolApiGW.Services.ClassMaster.ClassMasterController.Delete(Int32 actionType, Int32 id) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterController.cs:line 185

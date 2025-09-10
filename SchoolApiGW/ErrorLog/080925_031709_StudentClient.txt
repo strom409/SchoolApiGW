@@ -1,0 +1,5 @@
+Exception has been thrown by the target of an invocation. |    at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+   at System.Reflection.PropertyInfo.GetValue(Object obj)
+   at SchoolApiGW.Helper.ApiHelper.BuildMultipartContent(Object dto)
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody)
+   at SchoolApiGW.Services.Students.StudentClient.AddStudentAsync(AddStudentRequestDTO request, String clientId)

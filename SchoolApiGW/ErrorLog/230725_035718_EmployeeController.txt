@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while fetching employee by code: 13.
+ ---> System.Exception: Unauthorized: Invalid or Expired JWT
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.Employee.EmployeeClient.GetEmployeeByCode(String empCode, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Employee\EmployeeClient.cs:line 188
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Employee.EmployeeClient.GetEmployeeByCode(String empCode, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Employee\EmployeeClient.cs:line 207
+   at SchoolApiGW.Services.Employee.EmployeeController.FetchEmployeeData(Int32 actionType, String param) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Employee\EmployeeController.cs:line 160

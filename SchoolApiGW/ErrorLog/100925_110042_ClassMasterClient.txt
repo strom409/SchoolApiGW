@@ -1,0 +1,2 @@
+Invalid JSON response from API. HTTP 400 - Bad Request |    at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 56
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.UpdateClass(ClassDto classDto, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 186

@@ -1,0 +1,9 @@
+System.ApplicationException: Error occurred while fetching max marks by class and subject.
+ ---> System.FormatException: Index (zero based) must be greater than or equal to zero and less than the size of the argument list.
+   at System.Text.ValueStringBuilder.AppendFormatHelper(IFormatProvider provider, String format, ReadOnlySpan`1 args)
+   at System.String.FormatHelper(IFormatProvider provider, String format, ReadOnlySpan`1 args)
+   at System.String.Format(String format, Object arg0)
+   at SchoolApiGW.Services.MaxMarks.MaxMarksClient.GetMaxMarksByClassAndSubject(String param, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\MaxMarks\MaxMarksClient.cs:line 115
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.MaxMarks.MaxMarksClient.GetMaxMarksByClassAndSubject(String param, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\MaxMarks\MaxMarksClient.cs:line 135
+   at SchoolApiGW.Services.MaxMarks.MaxMarksController.Get(Int32 actionType, String param) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\MaxMarks\MaxMarksController.cs:line 98

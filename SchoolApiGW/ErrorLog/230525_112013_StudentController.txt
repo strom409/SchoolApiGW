@@ -1,0 +1,3 @@
+Error occurred while adding student. |    at SchoolApiGW.Services.Students.StudentClient.AddStudentAsync(AddStudentRequestDTO request) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 36
+   at SchoolApiGW.Services.Students.StudentService.AddStudent(AddStudentRequestDTO request) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentService.cs:line 30
+   at SchoolApiGW.Services.Students.StudentController.AddStudentByActionType(Int32 actionType, AddStudentRequestDTO request) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentController.cs:line 33

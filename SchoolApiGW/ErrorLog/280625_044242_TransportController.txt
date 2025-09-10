@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while updating transport.
+ ---> System.Exception: API error occurred
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.Transport.TransportClient.UpdateTransport(TransportDTO transport, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Transport\TransportClient.cs:line 70
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Transport.TransportClient.UpdateTransport(TransportDTO transport, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Transport\TransportClient.cs:line 82
+   at SchoolApiGW.Services.Transport.TransportController.PutTransport(Int32 actionType, Object payload) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Transport\TransportController.cs:line 180

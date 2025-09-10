@@ -1,0 +1,1 @@
+Object reference not set to an instance of an object. |    at SchoolApiGW.Services.Students.StudentClient.UpdateStudentAsync(UpdateStudentRequestDTO request, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 862

@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while getting educational departments.
+ ---> System.Exception: API error occurred
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.GetEducationalDepartments(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 28
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.GetEducationalDepartments(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 51
+   at SchoolApiGW.Services.ClassMaster.ClassMasterController.FetchClassMaster(Int32 actionType, String param) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterController.cs:line 86

@@ -1,0 +1,3 @@
+Duplicate FIELDS: MobileFather, FatherName, AdmissionNo, StudentName, MotherName found. |    at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 42
+   at SchoolApiGW.Services.Students.StudentClient.AddStudentAsync(AddStudentRequestDTO request) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 24
+   at SchoolApiGW.Services.Students.StudentService.AddStudent(AddStudentRequestDTO request) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentService.cs:line 29

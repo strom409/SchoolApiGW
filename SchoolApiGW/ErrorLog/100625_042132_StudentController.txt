@@ -1,0 +1,8 @@
+System.ApplicationException: Error occurred while fetching students by class ID: 2765564.
+ ---> System.Exception: API error occurred
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.Students.StudentClient.GetStudentByAdmissionNoAsync(String admissionNo, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 73
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Students.StudentClient.GetStudentByAdmissionNoAsync(String admissionNo, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 96
+   at SchoolApiGW.Services.Students.StudentService.GetStudentByAdmissionNo(String admissionNo, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentService.cs:line 39
+   at SchoolApiGW.Services.Students.StudentController.FetchStudentInfo(Int32 actionType, String param) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentController.cs:line 95

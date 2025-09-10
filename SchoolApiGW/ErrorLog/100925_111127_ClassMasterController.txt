@@ -1,0 +1,10 @@
+System.ApplicationException: Error occurred while updating class.
+ ---> System.InvalidOperationException: The request message was already sent. Cannot send the same request message multiple times.
+   at System.Net.Http.HttpClient.CheckRequestMessage(HttpRequestMessage request)
+   at System.Net.Http.HttpClient.CheckRequestBeforeSend(HttpRequestMessage request)
+   at System.Net.Http.HttpClient.SendAsync(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.UpdateClass(ClassDto classDto, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 186
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.UpdateClass(ClassDto classDto, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 198
+   at SchoolApiGW.Services.ClassMaster.ClassMasterController.Update(Int32 actionType, Object dto) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterController.cs:line 141

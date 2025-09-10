@@ -1,0 +1,2 @@
+Error occurred while fetching students by class ID: 2024-25. |    at SchoolApiGW.Services.Students.StudentClient.GetStudentsByCurrentSessionAsync(String currentSession, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 241
+   at SchoolApiGW.Services.Students.StudentService.GetStudentsByCurrentSession(String currentSession, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentService.cs:line 92

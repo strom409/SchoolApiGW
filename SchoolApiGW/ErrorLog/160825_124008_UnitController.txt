@@ -1,0 +1,6 @@
+System.ApplicationException: Error occurred while fetching all units.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at SchoolApiGW.Services.Units.UnitsClient.GetAllUnits(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Units\UnitsClient.cs:line 53
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Units.UnitsClient.GetAllUnits(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Units\UnitsClient.cs:line 64
+   at SchoolApiGW.Services.Units.UnitsController.Get(Int32 actionType, String param) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Units\UnitsController.cs:line 97

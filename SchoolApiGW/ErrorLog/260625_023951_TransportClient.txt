@@ -1,0 +1,2 @@
+API error occurred |    at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.Transport.TransportClient.AddTransport(TransportDTO transport, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Transport\TransportClient.cs:line 28

@@ -1,0 +1,2 @@
+Students are assigned to this class. |    at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.DeleteClass(Int32 classId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 230

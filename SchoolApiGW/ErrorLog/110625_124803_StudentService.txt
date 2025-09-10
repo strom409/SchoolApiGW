@@ -1,0 +1,2 @@
+Error occurred while fetching students by session: 2024-06-10,2024-06-11. |    at SchoolApiGW.Services.Students.StudentClient.TotalStudentsRollForDashBoardOnDateAsync(String session, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 571
+   at SchoolApiGW.Services.Students.StudentService.TotalStudentsRollForDashBoardOnDate(String session, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentService.cs:line 216

@@ -1,0 +1,6 @@
+System.ApplicationException: Error occurred while updating personal details.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at SchoolApiGW.Services.Students.StudentClient.UpdatePersonalDetailAsync(UpdateStudentRequestDTO request, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 909
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Students.StudentClient.UpdatePersonalDetailAsync(UpdateStudentRequestDTO request, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 928
+   at SchoolApiGW.Services.Students.StudentController.UpdateStudent(Int32 actionType, UpdateStudentRequestDTO request) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentController.cs:line 257

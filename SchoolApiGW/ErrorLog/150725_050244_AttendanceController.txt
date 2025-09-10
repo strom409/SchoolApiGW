@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while getting attendance list on dates.
+ ---> System.Exception: HTTP 400 - Bad Request
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 45
+   at SchoolApiGW.Services.Attendence.AttendenceClient.getAttendanceListOnDates(String dateFrom, String dateTo, String Session, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Attendence\AttendenceClient.cs:line 188
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Attendence.AttendenceClient.getAttendanceListOnDates(String dateFrom, String dateTo, String Session, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Attendence\AttendenceClient.cs:line 211
+   at SchoolApiGW.Services.Attendence.AttendenceController.FetchAttendance(Int32 actionType, String param) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Attendence\AttendenceController.cs:line 174

@@ -1,0 +1,2 @@
+Error occurred while fetching students by class ID: 119. |    at SchoolApiGW.Services.Students.StudentClient.GetStudentsByClassAsync(Int64 classId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 60
+   at SchoolApiGW.Services.Students.StudentService.GetStudentsByClass(Int64 classId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentService.cs:line 26

@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while updating class.
+ ---> System.Exception: Invalid JSON response from API. HTTP 400 - Bad Request
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 56
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.UpdateClass(ClassDto classDto, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 186
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.ClassMaster.ClassMasterClient.UpdateClass(ClassDto classDto, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterClient.cs:line 198
+   at SchoolApiGW.Services.ClassMaster.ClassMasterController.Update(Int32 actionType, Object dto) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\ClassMaster\ClassMasterController.cs:line 141

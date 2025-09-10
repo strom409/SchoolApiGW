@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while retrieving the next admission number.
+ ---> System.Exception: API error occurred
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.Students.StudentClient.GetNextAdmissionNoAsync(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 747
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Students.StudentClient.GetNextAdmissionNoAsync(String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 759
+   at SchoolApiGW.Services.Students.StudentController.FetchStudent(Int32 actionType, String param) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentController.cs:line 122

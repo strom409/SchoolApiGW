@@ -1,0 +1,7 @@
+System.ApplicationException: Error occurred while updating today's attendance.
+ ---> System.Exception: API error occurred
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Helper\ApiHelper.cs:line 41
+   at SchoolApiGW.Services.Attendence.AttendenceClient.UpdateTodaysAttendance(AttendanceDTO attendance, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Attendence\AttendenceClient.cs:line 70
+   --- End of inner exception stack trace ---
+   at SchoolApiGW.Services.Attendence.AttendenceClient.UpdateTodaysAttendance(AttendanceDTO attendance, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Attendence\AttendenceClient.cs:line 82
+   at SchoolApiGW.Services.Attendence.AttendenceController.UpdateAttendance(Int32 actionType, Object request) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Attendence\AttendenceController.cs:line 86

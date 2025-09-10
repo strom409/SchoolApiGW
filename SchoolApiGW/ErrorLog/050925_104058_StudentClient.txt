@@ -1,0 +1,5 @@
+Value cannot be null. (Parameter 'content') |    at System.ArgumentNullException.Throw(String paramName)
+   at System.Net.Http.StringContent.GetContentByteArray(String content, Encoding encoding)
+   at System.Net.Http.StringContent..ctor(String content, Encoding encoding, String mediaType)
+   at SchoolApiGW.Helper.ApiHelper.ApiConnection[TResponse](IHttpClientFactory httpClientFactory, String host, String endpoint, HttpMethod method, Object requestBody)
+   at SchoolApiGW.Services.Students.StudentClient.UpdatePersonalDetailAsync(UpdateStudentRequestDTO request, String clientId)

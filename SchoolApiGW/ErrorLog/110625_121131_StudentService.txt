@@ -1,0 +1,2 @@
+Error occurred while fetching students by sectionId: 25. |    at SchoolApiGW.Services.Students.StudentClient.GetMaxRollnoAsync(String sectionId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentClient.cs:line 389
+   at SchoolApiGW.Services.Students.StudentService.GetMaxRollno(String sectionId, String clientId) in D:\bismafilre\SchoolApiGW\SchoolApiGW\Services\Students\StudentService.cs:line 134
