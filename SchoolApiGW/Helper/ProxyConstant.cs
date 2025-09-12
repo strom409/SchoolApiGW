@@ -63,6 +63,7 @@
         public static readonly string Clientstudentgetby_GetAllDischargedStudentsOnSectionID = "/student?actionType={0}&param={1}";
 
         public static readonly string Clientstudentgetby_TotalStudentsRollForDashBoard = "/student?actionType={0}&param={1}";
+         public static readonly string Clientstudentgetby_AttendanceDashboard = "/student?actionType={0}&param={1}";
 
         public static readonly string Clientstudentgetby_ClassWisStudentsRollForDashBoard = "/student?actionType={0}&param={1}";
 

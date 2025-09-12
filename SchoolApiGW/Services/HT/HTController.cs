@@ -20,8 +20,8 @@ namespace SchoolApiGW.Services.HT
         public async Task<ActionResult<ResponseModel>> GetHT([FromQuery] int actionType)
         {
             var response = new ResponseModel { IsSuccess = true, Status = 0, Message = "Invalid Request" };
-
-            var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
+            var clientId = "client1";
+           // var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
             if (string.IsNullOrEmpty(clientId))
                 return BadRequest("ClientId header missing");
             try

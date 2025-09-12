@@ -19,12 +19,12 @@ namespace SchoolApiGW.Services.Students
         private readonly IWebHostEnvironment _env;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public StudentClient(IConfiguration configuration, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor, IWebHostEnvironment env    )
+        public StudentClient(IConfiguration configuration, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor, IWebHostEnvironment env)
             : base(configuration)
         {
             _configuration = configuration;
             _httpClientFactory = httpClientFactory;
-            _httpContextAccessor= httpContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
             _env = env;
         }
 
@@ -637,20 +637,96 @@ namespace SchoolApiGW.Services.Students
                 {
                     var parts = response.ResponseData.ToString().Split('|');
 
-                    if (parts.Length == 3 &&
-                        int.TryParse(parts[0], out int total) &&
-                        int.TryParse(parts[1], out int male) &&
-                        int.TryParse(parts[2], out int female))
-                    {
-                        var parsedResult = new Dictionary<string, object>
-                {
-                    { "TotalStudents", total },
-                    { "TotalMaleStudents", male },
-                    { "TotalFemaleStudents", female }
-                };
+                    // Updated to 7 parts: TS|TMS|TFS|TotalEmployees|ActiveEmployees|InactiveEmployees|TotalRoutes
+                    // Updated to 9 parts: TS|TMS|TFS|TotalEmployees|ActiveEmployees|InactiveEmployees|TME|TFE|TotalRoutes
+                    if (parts.Length == 11 &&
+                            int.TryParse(parts[0], out int total) &&
+                            int.TryParse(parts[1], out int male) &&
+                            int.TryParse(parts[2], out int female) &&
+                            int.TryParse(parts[3], out int totalEmployees) &&
+                            int.TryParse(parts[4], out int activeEmployees) &&
+                            int.TryParse(parts[5], out int inactiveEmployees) &&
+                            int.TryParse(parts[6], out int maleEmployees) &&
+                            int.TryParse(parts[7], out int femaleEmployees) &&
+                            int.TryParse(parts[8], out int teachingEmployees) &&
+                            int.TryParse(parts[9], out int nonTeachingEmployees) &&
+                            int.TryParse(parts[10], out int routes))
+                                            {
+                                                var parsedResult = new Dictionary<string, object>
+                            {
+                                { "TotalStudents", total },
+                                { "TotalMaleStudents", male },
+                                { "TotalFemaleStudents", female },
+                                { "TotalEmployees", totalEmployees },
+                                { "ActiveEmployees", activeEmployees },
+                                { "InactiveEmployees", inactiveEmployees },
+                                { "TotalMaleEmployees", maleEmployees },
+                                { "TotalFemaleEmployees", femaleEmployees },
+                                { "TeachingEmployees", teachingEmployees },
+                                { "NonTeachingEmployees", nonTeachingEmployees },
+                                { "TotalRoutes", routes }
+                            };
+
                         response.ResponseData = parsedResult;
                     }
-                    // Optional: attach parsed object back to response (for downstream use)
+
+                    return response;
+
+                }
+
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                Helper.Error.ErrorBLL.CreateErrorLog(
+                    "StudentClient",
+                    "TotalStudentsRollForDashBoardAsync",
+                    ex.Message + " | " + ex.StackTrace);
+
+                throw new ApplicationException($"Error occurred while fetching students by session: {session}.", ex);
+            }
+        }
+
+        public async Task<ResponseModel> AttendanceDashboardForDate(string session, string clientId)
+        {
+            try
+            {
+                // Format the endpoint using your constants (adjust if needed)
+                string formattedEndpoint = string.Format(
+                    ProxyConstant.Clientstudentgetby_AttendanceDashboard, 21, session);
+
+                // Call your ApiHelper to handle HttpClient
+                var response = await ApiHelper.ApiConnection<ResponseModel>(
+                    _httpClientFactory,
+                    student_Universal_API_Host,
+                    formattedEndpoint,
+                    HttpMethod.Get,
+                    null
+                );
+
+                if (response.IsSuccess && response.ResponseData != null)
+                {
+                    // Split pipe-separated string returned by backend (if backend still returns "Present|Absent")
+                    var parts = response.ResponseData.ToString().Split('|');
+
+                    if (parts.Length == 4 &&
+        int.TryParse(parts[0], out int present) &&
+        int.TryParse(parts[1], out int absent) &&
+        int.TryParse(parts[2], out int leave) &&
+        int.TryParse(parts[3], out int halfDay))
+                    {
+                        var parsedResult = new Dictionary<string, object>
+        {
+            { "PresentToday", present },
+            { "AbsentToday", absent },
+            { "LeaveToday", leave },
+            { "HalfDayToday", halfDay }
+        };
+
+                        response.ResponseData = parsedResult;
+                    }
+
                     return response;
                 }
 
@@ -658,10 +734,15 @@ namespace SchoolApiGW.Services.Students
             }
             catch (Exception ex)
             {
-                Helper.Error.ErrorBLL.CreateErrorLog("StudentClient", "TotalStudentsRollForDashBoardAsync", ex.Message + " | " + ex.StackTrace);
-                throw new ApplicationException($"Error occurred while fetching students by session: {session}.", ex);
+                Helper.Error.ErrorBLL.CreateErrorLog(
+                    "StudentClient",
+                    "AttendanceDashboardForDate",
+                    ex.Message + " | " + ex.StackTrace);
+
+                throw new ApplicationException($"Error occurred while fetching attendance for session: {session}.", ex);
             }
         }
+
 
         public async Task<ResponseModel> ClassWisStudentsRollForDashBoardAsync(string session, string clientId)
         {
@@ -1369,7 +1450,7 @@ namespace SchoolApiGW.Services.Students
                 Helper.Error.ErrorBLL.CreateErrorLog("StudentClient", "UpdateClassStudentRollNumbers",
                     $"HTTP Error: {httpEx.StatusCode} - {httpEx.Message}");
             }
-            
+
             catch (Exception ex)
             {
                 response.Status = 500;
@@ -1668,7 +1749,7 @@ namespace SchoolApiGW.Services.Students
             {
                 // Use the correct endpoint constant (no need to format if static)
                 string formattedEndpoint = string.Format(
-                    ProxyConstant.Clientstudentgetby_GetAllSessions,19);
+                    ProxyConstant.Clientstudentgetby_GetAllSessions, 19);
 
                 // Call the backend service using ApiHelper
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
@@ -1676,7 +1757,7 @@ namespace SchoolApiGW.Services.Students
                     student_Universal_API_Host,
                     formattedEndpoint,
                     HttpMethod.Get,
-                    null  
+                    null
                 );
 
                 // If response is successful and ResponseData is not null

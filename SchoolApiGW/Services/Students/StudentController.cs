@@ -207,6 +207,13 @@ namespace SchoolApiGW.Services.Students
                     case 19: // Get GetAllSessions 
                         return Ok(await _studentClient.GetAllSessions(clientId));
 
+                    case 21: // Attendance Dashboard
+                        if (string.IsNullOrEmpty(param))
+                            return BadRequest(new ResponseModel { IsSuccess = true, Status = 0 });
+
+                        // Call the service method that returns attendance dashboard data
+                        return Ok(await _studentClient.AttendanceDashboardForDate(param, clientId));
+
                     default:
                         return BadRequest(new ResponseModel { IsSuccess = true, Status = 0 });
                 }
