@@ -172,13 +172,18 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
         c.SwaggerEndpoint($"{swaggerJsonBasePath}/swagger/v1/swagger.json", "NIT Services Bff Api");
     });
 }
-app.UseStaticFiles(new StaticFileOptions
+var clientDataPath = Path.Combine(app.Environment.ContentRootPath, "ClientData");
+
+// Register static file middleware only if folder exists
+if (Directory.Exists(clientDataPath))
 {
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(app.Environment.ContentRootPath, "ClientData") // dynamic root
-    ),
-    RequestPath = "/ClientData"
-});
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(clientDataPath),
+        RequestPath = "/ClientData"
+    });
+}
+
 
 
 ///app.UseMiddleware<JWTMiddleware>();
