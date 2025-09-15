@@ -21,8 +21,9 @@ namespace SchoolApiGW.Services.HT
         {
             try
             {
+
                 // Format endpoint (adjust constant name to match your config)
-                string formattedEndpoint = string.Format(ProxyConstant.HT_GetHT);
+                string formattedEndpoint = string.Format(ProxyConstant.HT_GetHT, clientId);
 
                 // Call API
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
@@ -56,7 +57,7 @@ namespace SchoolApiGW.Services.HT
             try
             {
                 // Format endpoint with clientId
-                string formattedEndpoint = string.Format(ProxyConstant.HT_UpdateHT);
+                string formattedEndpoint = string.Format(ProxyConstant.HT_UpdateHT,clientId);
 
                 // Call API with data
                 var response = await ApiHelper.ApiConnection<ResponseModel>(

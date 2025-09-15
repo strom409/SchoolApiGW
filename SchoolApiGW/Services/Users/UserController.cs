@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchoolApiGW.Helper;
 using SchoolApiGW.Middleware;
 using System.Linq;
 
@@ -6,27 +7,150 @@ namespace SchoolApiGW.Services.Users
 {
     [Route("api/[controller]")]
     [ApiController]
-    [JWTMiddleware] // or use [Authorize] if you switch to built-in auth
+    [JWTMiddleware] 
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUserClient _userClient;
 
-        public UserController(IUserService userService)
+        public UserController(IUserClient userClient)
         {
-            _userService = userService;
+            _userClient = userClient;
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> AddUser([FromBody] RequestUserDto user)
+        [HttpPost("User")]
+        public async Task<ActionResult<ResponseModel>> AddUser([FromQuery] int actionType, [FromForm] RequestUserDto request)
         {
-            var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
+            var response = new ResponseModel
+            {
+                IsSuccess = true,
+                Status = 0,
+                Message = "Issue at Controller Level !"
+            };
 
-            if (string.IsNullOrEmpty(clientId))
-                return Unauthorized("ClientId claim missing");
+            try
+            {
 
-            var result = await _userService.AddUser(user, clientId);
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
 
-            return Ok(result);
+                if (string.IsNullOrEmpty(clientId))
+                    return BadRequest("ClientId header missing");
+                switch (actionType)
+                {
+                    case 0: // Add
+                        response = await _userClient.AddUserAsync(request, clientId);
+                        break;
+
+                    default:
+                        response.IsSuccess = false;
+                        response.Status = -1;
+                        response.Message = "Invalid actionType provided.";
+                        break;
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Status = -1;
+                response.Message = "Error: " + ex.ToString();
+                Helper.Error.ErrorBLL.CreateErrorLog("UserController", "AddUser",
+                    ex.ToString()
+                );
+
+                return Ok(response);
+            }
+        }
+
+        [HttpPut("UpdateUser")]
+        public async Task<ActionResult<ResponseModel>> UpdateUser([FromQuery] int actionType, [FromForm] RequestUserDto request)
+        {
+            var response = new ResponseModel
+            {
+                IsSuccess = true,
+                Status = 0,
+                Message = "Issue at Controller Level !"
+            };
+
+            try
+            {
+
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
+
+                if (string.IsNullOrEmpty(clientId))
+                    return BadRequest("ClientId header missing");
+                switch (actionType)
+                {
+                    case 0: // Add
+                        response = await _userClient.UpdateUserAsync(request, clientId);
+                        break;
+
+                    default:
+                        response.IsSuccess = false;
+                        response.Status = -1;
+                        response.Message = "Invalid actionType provided.";
+                        break;
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Status = -1;
+                response.Message = "Error: " + ex.ToString();
+                Helper.Error.ErrorBLL.CreateErrorLog("UserController", "UpdateUser",
+                    ex.ToString()
+                );
+
+                return Ok(response);
+            }
+        }
+
+
+        [HttpDelete("Users/{userId}")]
+        public async Task<ActionResult<ResponseModel>> DeleteUser([FromQuery] int actionType, [FromRoute] int userId)
+        {
+            var response = new ResponseModel
+            {
+                IsSuccess = true,
+                Status = 0,
+                Message = "Issue at Controller Level !"
+            };
+
+            try
+            {
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
+
+                if (string.IsNullOrEmpty(clientId))
+                    return BadRequest("ClientId header missing");
+
+                switch (actionType)
+                {
+                    case 0: // Delete
+                        response = await _userClient.DeleteUserAsync(userId, clientId);
+                        break;
+
+                    default:
+                        response.IsSuccess = false;
+                        response.Status = -1;
+                        response.Message = "Invalid actionType provided.";
+                        break;
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Status = -1;
+                response.Message = "Error: " + ex.ToString();
+                Helper.Error.ErrorBLL.CreateErrorLog("UserController", "DeleteUser",
+                    ex.ToString()
+                );
+
+                return Ok(response);
+            }
         }
     }
 }

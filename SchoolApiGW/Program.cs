@@ -75,7 +75,6 @@ builder.Services.AddScoped<IHTClient, HTClient>();
 builder.Services.AddScoped<ILoginClient, LoginClient>();
 // builder.Services.AddScoped<ILoginServices, LoginServices>();
 builder.Services.AddScoped<IUserClient, UserClient>();
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITransportClient, TransportClient>();
 builder.Services.AddScoped<IClassMasterClient, ClassMasterClient>();
 builder.Services.AddScoped<IAttendenceClient, AttendenceClient>();

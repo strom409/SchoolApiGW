@@ -16,14 +16,15 @@ namespace SchoolApiGW.Services.HT
         {
             _htClient=htClient;
         }
+
         [HttpGet]
-        public async Task<ActionResult<ResponseModel>> GetHT([FromQuery] int actionType)
+        public async Task<ActionResult<ResponseModel>> GetHT([FromQuery] int actionType, [FromQuery] string clientId)
         {
             var response = new ResponseModel { IsSuccess = true, Status = 0, Message = "Invalid Request" };
-            var clientId = "client1";
-           // var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
+
             if (string.IsNullOrEmpty(clientId))
-                return BadRequest("ClientId header missing");
+                return BadRequest("ClientId is required");
+
             try
             {
                 switch (actionType)
@@ -50,29 +51,28 @@ namespace SchoolApiGW.Services.HT
 
                 return StatusCode(500, response);
             }
-
         }
 
         [HttpPut]
-        public async Task<ActionResult<ResponseModel>> UpdateHT(
-            [FromQuery] int actionType,
-            [FromBody] object payload)
+        public async Task<ActionResult<ResponseModel>> UpdateHT([FromQuery] int actionType, [FromQuery] string clientId,
+           [FromBody] object payload)
         {
             var response = new ResponseModel { IsSuccess = true, Status = 0, Message = "Invalid Request" };
 
+            // Validate clientId
+            if (string.IsNullOrEmpty(clientId))
+                return BadRequest("ClientId is required");
             try
             {
-                var clientId = Request.Headers["ClientId"].ToString();
-                if (string.IsNullOrEmpty(clientId))
-                    clientId = "client1";
-
-
                 switch (actionType)
                 {
                     case 0:
                         var htDto = JsonConvert.DeserializeObject<HTModel>(payload.ToString());
                         if (htDto == null)
-                            return BadRequest(new ResponseModel { IsSuccess = false, Message = "Invalid payload for UpdateHT", Status = -1 });
+                            return BadRequest(new ResponseModel
+                            {
+                                Message = "Invalid payload for UpdateHT",
+                            });
 
                         response = await _htClient.UpdateHT(htDto, clientId);
                         break;
@@ -84,7 +84,6 @@ namespace SchoolApiGW.Services.HT
                             Message = "Invalid actionType"
                         });
                 }
-
 
                 return Ok(response);
             }
@@ -99,8 +98,8 @@ namespace SchoolApiGW.Services.HT
 
                 return StatusCode(500, response);
             }
-
         }
+       
 
     }
 }

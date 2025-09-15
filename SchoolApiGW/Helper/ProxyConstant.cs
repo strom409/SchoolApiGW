@@ -4,8 +4,12 @@
     {
         // login for testing 
         public static readonly string ClientLoginUser_LoginUser = "/Login";
-        public const string HT_GetHT = "/api/HT?actionType=0";
-        public const string HT_UpdateHT = "/api/HT?actionType=1";
+        public const string HT_GetHT = "/api/HT?actionType=0&clientId={0}";
+        public const string HT_UpdateHT = "/api/HT?actionType=0&clientId={0}";
+        //  for user endpoint 
+        public const string Clientuserpost_PostAddUser = "api/User/User?actionType=0";
+        public const string Clientuserput_PutUpdateUser = "api/User/UpdateUser?actionType=0";
+        public const string Clientuserdelete_DeleteUser = "/api/User/Users/{0}?actionType=0";
         // Add Student
         public static readonly string ClientCresentstudentadd_addstudent = "/api/student";
 

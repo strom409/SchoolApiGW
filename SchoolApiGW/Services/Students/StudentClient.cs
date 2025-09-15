@@ -1027,7 +1027,7 @@ namespace SchoolApiGW.Services.Students
             try
             {
                 // 1️⃣ Get StudentID from microservice
-                var studentResponse = await GetStudentIdFromMicroservice(request.StudentInfoID, clientId);
+                var studentResponse = await GetStudentId(request.StudentInfoID, clientId);
 
                 if (!studentResponse.IsSuccess || studentResponse.ResponseData == null)
                 {
@@ -1045,12 +1045,7 @@ namespace SchoolApiGW.Services.Students
                     string studentId = dto.StudentID;
 
                     // 2️⃣ Save Father Photo (if exists)
-                    if (request.FatherPhoto != null && request.FatherPhoto.Length > 0)
-                    {
-                        string fatherPhotoUrl = await SavePhotoAsync(request.FatherPhoto, clientId, studentId, "FatherPhoto");
-                        request.FatherPhotoPath = fatherPhotoUrl;
-                        request.FatherPhoto = null; // remove file from request
-                    }
+                  
 
                     // 3️⃣ Save Mother Photo (if exists)
                     if (request.MotherPhoto != null && request.MotherPhoto.Length > 0)
@@ -1199,7 +1194,7 @@ namespace SchoolApiGW.Services.Students
                 if (request.StudentPhoto != null && request.StudentPhoto.Length > 0)
                 {
                     // Get student ID from microservice
-                    var studentResponse = await GetStudentIdFromMicroservice(request.StudentInfoID, clientId);
+                    var studentResponse = await GetStudentId(request.StudentInfoID, clientId);
 
                     if (!studentResponse.IsSuccess || studentResponse.ResponseData == null)
                     {
@@ -1266,7 +1261,7 @@ namespace SchoolApiGW.Services.Students
                 };
             }
         }
-        private async Task<ResponseModel> GetStudentIdFromMicroservice(string studentInfoId, string clientId)
+        private async Task<ResponseModel> GetStudentId(string studentInfoId, string clientId)
         {
             var response = new ResponseModel
             {
