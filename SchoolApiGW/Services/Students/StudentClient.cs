@@ -108,9 +108,6 @@ namespace SchoolApiGW.Services.Students
                 };
             }
         }
-
-
-
         public async Task<ResponseModel> GetStudentsByClassAsync(long classId, string clientId)
         {
             try
@@ -369,6 +366,7 @@ namespace SchoolApiGW.Services.Students
                 throw new ApplicationException($"Error occurred while fetching students by Phone: {phoneNo}.", ex);
             }
         }
+
 
 
         public async Task<ResponseModel> GetStudentsByCurrentSessionAsync(string currentSession, string clientId)
@@ -1045,7 +1043,12 @@ namespace SchoolApiGW.Services.Students
                     string studentId = dto.StudentID;
 
                     // 2️⃣ Save Father Photo (if exists)
-                  
+                    if (request.FatherPhoto != null && request.FatherPhoto.Length > 0)
+                    {
+                        string fatherPhotoUrl = await SavePhotoAsync(request.FatherPhoto, clientId, studentId, "FatherPhoto");
+                        request.FatherPhotoPath = fatherPhotoUrl;
+                        request.FatherPhoto = null; // remove file from request
+                    }
 
                     // 3️⃣ Save Mother Photo (if exists)
                     if (request.MotherPhoto != null && request.MotherPhoto.Length > 0)

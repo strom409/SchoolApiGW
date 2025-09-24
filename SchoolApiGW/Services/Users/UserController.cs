@@ -84,6 +84,9 @@ namespace SchoolApiGW.Services.Users
                     case 0: // Add
                         response = await _userClient.UpdateUserAsync(request, clientId);
                         break;
+                    case 1: // Add
+                        response = await _userClient.ChangeUserPasswordAsync(request, clientId);
+                        break;
 
                     default:
                         response.IsSuccess = false;

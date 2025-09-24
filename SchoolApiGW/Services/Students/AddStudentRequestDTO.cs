@@ -48,9 +48,6 @@
 
         // Property for AddGPS
         public string? GPSLocation { get; set; }
-
-        // ------ Additional Properties from StudentCreateRequest ------
-
         public string? StudentID { get; set; }
         public string? StudentInfoID { get; set; }
         public string? StudentCode { get; set; }
@@ -71,7 +68,7 @@
         public string? UserName { get; set; }
         public string? UpdatedOn { get; set; }
         // public string? Discharged { get; set; }
-        public int? ActionType { get; set; } = 1;
+     //   public int? ActionType { get; set; } = 1;
         public int? UpdateType { get; set; } = 0;
         public string? RouteName { get; set; }
         public string? BusStopName { get; set; }
@@ -91,8 +88,6 @@
         public string? FAdhaar { get; set; }
         public string? MAdhaar { get; set; }
         public string? FatherIncome { get; set; }
-        //public string? MotherPhoto { get; set; }
-        //public string? FatherPhoto { get; set; }
         public string? MotherIncome { get; set; }
         public string? PrDistrictID { get; set; }
         public string? Apaarid { get; set; }
@@ -100,8 +95,18 @@
         public string? StateID { get; set; }
         public string? PrStateID { get; set; }
         public string? PrStateName { get; set; }
-        //public string? FatherPhotoPath { get; set; }
-        //public string? MotherPhotoPath { get; set; }
+        public string? Religion { get; set; }
+        public string? MotherTounge { get; set; }
+        public string? BankName { get; set; }
+        public string? AccountNo { get; set; }
+        public string? AccountType { get; set; }
+        public string? IFCCode { get; set; }
+      //  public string? Scategory { get; set; }
+      //  public long? ScategoryID { get; set; }
+        public int? BPLStatus { get; set; }
+        public string? SDisability { get; set; }
+        public string? Tehsil { get; set; }
+        public string? TehsilPer { get; set; }
         public IFormFile? StudentPhoto { get; set; }
         public IFormFile? FatherPhoto { get; set; }
         public IFormFile? MotherPhoto { get; set; }

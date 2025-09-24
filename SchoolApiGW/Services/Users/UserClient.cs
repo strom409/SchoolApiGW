@@ -103,7 +103,7 @@ namespace SchoolApiGW.Services.Users
                 }
 
                 // 3️⃣ Call microservice via proxy
-                string formattedEndpoint = string.Format(ProxyConstant.Clientuserput_PutUpdateUser, 0); // actionType = 1
+                string formattedEndpoint = string.Format(ProxyConstant.Clientuserput_PutUpdateUser, 0); // actionType = 0
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
                     user_Universal_API_Host,
@@ -130,7 +130,32 @@ namespace SchoolApiGW.Services.Users
                 };
             }
         }
+        public async Task<ResponseModel> ChangeUserPasswordAsync(RequestUserDto request, string clientId)
+        {
+            try
+            {
+                string endpoint = ProxyConstant.User_ChangePassword;
 
+                var response = await ApiHelper.ApiConnection<ResponseModel>(
+                    _httpClientFactory,
+                    user_Universal_API_Host, // your microservice host
+                    endpoint,
+                    HttpMethod.Post,
+                    request
+                );
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Helper.Error.ErrorBLL.CreateErrorLog(
+                    "UserClient",
+                    "ChangeUserPasswordAsync",
+                    ex.Message + " | " + ex.StackTrace
+                );
+                throw new ApplicationException("Error occurred while changing user password.", ex);
+            }
+        }
         public async Task<ResponseModel> DeleteUserAsync(int userId, string clientId)
         {
             try
@@ -174,9 +199,6 @@ namespace SchoolApiGW.Services.Users
                 };
             }
         }
-
-
-
         private async Task<string?> SavePhotoAsync(IFormFile photo, string clientId, string userId, string folder)
         {
             if (photo == null || photo.Length == 0)
@@ -214,6 +236,7 @@ namespace SchoolApiGW.Services.Users
                 return null;
             }
         }
+
 
     }
 

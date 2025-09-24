@@ -1,4 +1,6 @@
-﻿namespace SchoolApiGW.Helper
+﻿using System.Text.RegularExpressions;
+
+namespace SchoolApiGW.Helper
 {
     public static class ProxyConstant
     {
@@ -9,7 +11,14 @@
         //  for user endpoint 
         public const string Clientuserpost_PostAddUser = "api/User/User?actionType=0";
         public const string Clientuserput_PutUpdateUser = "api/User/UpdateUser?actionType=0";
+        public const string User_ChangePassword = "api/User/change-password?actionType=0";
         public const string Clientuserdelete_DeleteUser = "/api/User/Users/{0}?actionType=0";
+        // for useracess management
+        public const string UserAccess_Add = "api/UserAccess/add-user-access?actionType=0";        // POST
+        public const string UserAccess_Update = "api/UserAccess/update-user-access?actionType=1";  // PUT
+        public const string UserTypes_GetUserTypes = "api/UserAccess/get-user-types?actionType=0";
+        public const string UserAccess_Delete = "api/UserAccess/delete-user-access?actionType={0}&uIDFK={1}";
+
         // Add Student
         public static readonly string ClientCresentstudentadd_addstudent = "/api/student";
 
@@ -67,7 +76,7 @@
         public static readonly string Clientstudentgetby_GetAllDischargedStudentsOnSectionID = "/student?actionType={0}&param={1}";
 
         public static readonly string Clientstudentgetby_TotalStudentsRollForDashBoard = "/student?actionType={0}&param={1}";
-         public static readonly string Clientstudentgetby_AttendanceDashboard = "/student?actionType={0}&param={1}";
+        public static readonly string Clientstudentgetby_AttendanceDashboard = "/student?actionType={0}&param={1}";
 
         public static readonly string Clientstudentgetby_ClassWisStudentsRollForDashBoard = "/student?actionType={0}&param={1}";
 
@@ -93,7 +102,7 @@
 
         public const string Clientstudentput_UpdateAddressDetail = "/update-student?actionType={0}";
 
-                           
+
         public const string Clientstudentput_UpdatePersonalDetail = "/update-student?actionType={0}";
 
         public const string Clientstudentget_GetStudentId = "/student?actionType={0}&param={1}";
@@ -113,7 +122,7 @@
 
         public const string Clientstudentpost_PostDischargeStudentForIntValue = "update-student-by-action/{0}";
 
-                 
+
         public const string ClientstudentPut_PutRejoinStudent = "update-student?actionType={0}";
 
         public const string Clientstudentpost_PostRejoinStudentForIntValue = "update-student-by-action/{0}";
@@ -166,7 +175,7 @@
         public const string TransportAdd_PostAddTransport = "api/Transport/AddTransport?actionType=0";
 
         public const string TransportAddBusStops_PostAddBusStops = "api/Transport/AddTransport?actionType=1";
-      
+
         //update 
         public const string TransportUpdateRoute_PostUpdateRoute = "api/transport/UpdateTransport?actionType=0";
 
@@ -281,7 +290,7 @@
         public const string Attendance_GetPendingAttendanceStudents = "api/Attendence/attendance?actionType=7&param={0}";
         public const string Attendance_GetAttendanceReport = "api/Attendence/attendance?actionType=9&param={0},{1},{2},{3}";
 
-        
+
         // ClassTest endpoints
         public const string ClassTest_AddClassTestMaxMarks = "api/ClassTest/class-test?actionType=0";
         public const string ClassTest_AddClassTestMarks = "api/ClassTest/class-test?actionType=1";
@@ -320,7 +329,7 @@
         public const string Employee_WithdrawEmployee = "api/Employee/manage?actionType=3";
         public const string Employee_RejoinEmployee = "api/Employee/manage?actionType=4";
         public const string Employee_UpdateEmployeeDetailField = "api/Employee/manage?actionType=5";
-        
+
         public const string Employee_GetEmployeeByCode = "api/Employee/fetch?actionType=0&param={0}";
         public const string Employee_GetAllEmployeesByYear = "api/Employee/fetch?actionType=1&param={0}";
         public const string Employee_GetEmployeesBySubDept = "api/Employee/fetch?actionType=2&param={0}";
@@ -345,7 +354,7 @@
         public const string Salary_DeleteSalaryOnDepartments = "api/Salary/salary?actionType=6";
         public const string Salary_GetDemoSalaryOnDepartments = "api/Salary/salary?actionType=7";
         public const string Salary_AddNewLoan = "api/Salary/salary?actionType=8";
-        
+
         public const string Salary_GetEmployeeSalaryToEditOnEDID = "api/Salary/fetch-salary-data?actionType=0&param={0}";
         public const string Salary_GetEmployeeSalaryToEditOnECode = "api/Salary/fetch-salary-data?actionType=1&param={0}";
         public const string Salary_GetEmployeeSalaryToEditOnFieldName = "api/Salary/fetch-salary-data?actionType=2&param={0}";
@@ -379,7 +388,7 @@
         public const string Employee_GetQualifications = "/api/Qualifications/get-qualifications?actionType=0";
 
         public const string Employee_GetQualificationById = "/api/Qualifications/get-qualifications?actionType=1&param={0}";
-       
+
         public const string Employee_AddQualification = "/api/Qualifications/add-qualification?actionType=0";
 
         public const string Employee_UpdateQualification = "/api/Qualifications/update-qualification?actionType=0";
@@ -448,8 +457,8 @@
 
         public const string ExamGrades_Add = "api/ExamGrades/add";
         public const string ExamGrades_Update = "api/ExamGrades/update";
-        public const string ExamGrades_Delete = "api/ExamGrades/delete/{0}"; 
-        public const string ExamGrades_GetById = "api/ExamGrades/get/{0}";   
+        public const string ExamGrades_Delete = "api/ExamGrades/delete/{0}";
+        public const string ExamGrades_GetById = "api/ExamGrades/get/{0}";
         public const string ExamGrades_GetAll = "api/ExamGrades/getall";
 
         // result endpoint
@@ -460,7 +469,25 @@
         // gazet endpoint
 
         public const string ExamGrades_GetGazetResults = "api/Gazet/fetch?actionType=1&param={0}";
+
+        // fee management  endpoint
+        // fee head endpoints
+        public const string FeeHead_AddFeeHead = "/api/FeeHead/add-info?actionType=0";
+        public const string FeeHead_UpdateFeeHead = "/api/FeeHead/update-by-action?actionType=0";
+        public const string FeeHead_GetFeeHeadById = "/api/FeeHead/fetch?actionType=1&param={0}";
+        public const string FeeHead_GetAllFeeHeads = "/api/FeeHead/fetch?actionType=0";
+        public const string FeeHead_GetFeeHeadsByType = "/api/FeeHead/fetch?actionType=2&param={0}";
+        public const string FeeHead_DeleteFeeHead = "/api/FeeHead/delete?actionType=0&id=0";
+
+        // fee structure endpoints
+        public const string FeeStructure_AddFeeStructure = "/api/FeeStructure/add-info?actionType=0";
+        public const string FeeStructure_UpdateFeeStructure = "/api/FeeStructure/update-by-action?actionType=0";
+        public const string FeeStructure_GetFeeStructureById = "/api/FeeStructure/fetch?actionType=1&param={0}";
+        public const string FeeStructure_GetAllFeeStructures = "/api/FeeStructure/fetch?actionType=0";
+        public const string FeeStructure_GetFeeStructuresByClassId = "/api/FeeStructure/fetch?actionType=2&param={0}";
+        public const string FeeStructure_DeleteFeeStructure = "api/FeeStructure/delete?actionType=0&id=0";
+
+
     }
-
-
 }
+

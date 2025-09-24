@@ -28,6 +28,7 @@ using SchoolApiGW.Services.TeacherLog;
 using SchoolApiGW.Services.Transport;
 using SchoolApiGW.Services.Units;
 using SchoolApiGW.Services.Users;
+using SchoolApiGW.Services.Users.UserAccessManagement;
 using System.Net;
 using System.Text;
 
@@ -73,7 +74,7 @@ builder.Services.AddScoped<IStudentClient, StudentClient>();
 builder.Services.AddScoped<IDistrictClient, DistrictClient>();
 builder.Services.AddScoped<IHTClient, HTClient>();
 builder.Services.AddScoped<ILoginClient, LoginClient>();
-// builder.Services.AddScoped<ILoginServices, LoginServices>();
+builder.Services.AddScoped<IUserAccessClient, UserAccessClient>();
 builder.Services.AddScoped<IUserClient, UserClient>();
 builder.Services.AddScoped<ITransportClient, TransportClient>();
 builder.Services.AddScoped<IClassMasterClient, ClassMasterClient>();

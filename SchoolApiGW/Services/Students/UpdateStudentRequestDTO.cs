@@ -68,7 +68,7 @@
         public string? GuardianPhoneNo { get; set; }
         public string? GuardianQualification { get; set; }
         public string? GuardialAccupation { get; set; }
-        public int? ActionType { get; set; }
+       // public int? ActionType { get; set; }
         public int? UpdateType { get; set; }
         public string? AcademicNo { get; set; }
         public string? HID { get; set; }
@@ -106,6 +106,16 @@
         public string? FatherPhotoPath { get; set; }
         public string? MotherPhotoPath { get; set; }
         public string? PrStateName { get; set; }
+        public string? Religion { get; set; }
+        public string? MotherTounge { get; set; }
+        public string? BankName { get; set; }
+        public string? AccountNo { get; set; }
+        public string? AccountType { get; set; }
+        public string? IFCCode { get; set; }
+        public int? BPLStatus { get; set; }
+        public string? SDisability { get; set; }
+        public string? Tehsil { get; set; }
+        public string? TehsilPer { get; set; }
         public IFormFile? StudentPhoto { get; set; }
         public IFormFile? FatherPhoto { get; set; }
         public IFormFile? MotherPhoto { get; set; }
