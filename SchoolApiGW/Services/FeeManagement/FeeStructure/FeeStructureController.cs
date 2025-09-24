@@ -23,8 +23,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
 
             try
             {
-                var clientId = "client1";
-                //   var clientId = Request.Headers["X-Client-Id"].FirstOrDefault();
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
                 if (string.IsNullOrEmpty(clientId))
                     return BadRequest("ClientId header missing");
 
@@ -56,9 +55,8 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
         [HttpGet("fetch")]
         public async Task<ActionResult<ResponseModel>> Fetch([FromQuery] int actionType, [FromQuery] string? param)
         {
-            var response = new ResponseModel { IsSuccess = true, Status = 0 };
-            var clientId = "client1";
-            // var clientId = Request.Headers["X-Client-Id"].FirstOrDefault();
+            var response = new ResponseModel { IsSuccess = true, Status = 0, Message = "Issue at Controller Level!" };
+            var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
             if (string.IsNullOrEmpty(clientId))
                 return BadRequest("ClientId header missing");
 
@@ -110,8 +108,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
 
             try
             {
-                var clientId = "client1";
-                //var clientId = Request.Headers["X-Client-Id"].FirstOrDefault();
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
                 if (string.IsNullOrEmpty(clientId))
                     return BadRequest("ClientId header missing");
 
@@ -149,8 +146,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
 
             try
             {
-                //var clientId = Request.Headers["X-Client-Id"].FirstOrDefault();
-                var clientId = "client1";
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
                 if (string.IsNullOrEmpty(clientId))
                     return BadRequest("ClientId header missing.");
 

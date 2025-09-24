@@ -14,7 +14,9 @@
         private readonly string _employee_svc_key = "EmployeeAPI";
         private readonly string _Examination_svc_key = "ExaminationAPI";
         private readonly string _teacherlog_svc_key = "TeacherLogAPI";
-        
+        private readonly string _feemanagement_svc_key = "FeeManagementAPI";
+
+
         public string student_Universal_API_Host
         {
             get { return _configuration.GetValue<string>(_student_svc_key); }
@@ -57,6 +59,10 @@
         public string teacherlog_Universal_API_Host
         {
             get { return _configuration.GetValue<string>(_teacherlog_svc_key); }
+        }
+        public string FeeManagement_Universal_API_Host  
+        {
+            get { return _configuration.GetValue<string>(_feemanagement_svc_key); }
         }
 
         public ProxyBaseUrl(IConfiguration configuration)

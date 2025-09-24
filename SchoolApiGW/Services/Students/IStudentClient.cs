@@ -49,6 +49,7 @@ namespace SchoolApiGW.Services.Students
         Task<ResponseModel> UpdateStudentHeightWeightAdharNamePENEtcUDISEAsync(UpdateStudentRequestDTO request, string clientId);
 
         Task<ResponseModel> UpdateStudentSessionAsync(StudentSessionUpdateRequest request, string clientId);
+        Task<ResponseModel> UpdateOldSchoolBasicDetails(OldSchoolDetailsDTO request, string clientId);
     }
 }
 

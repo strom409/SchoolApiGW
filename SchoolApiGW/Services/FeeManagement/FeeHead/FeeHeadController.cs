@@ -21,8 +21,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
 
             try
             {
-                //  var clientId = Request.Headers["X-Client-Id"].FirstOrDefault();
-                var clientId = "client1";
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
 
                 if (string.IsNullOrEmpty(clientId))
                     return BadRequest("ClientId header missing");
@@ -57,8 +56,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
         {
             var response = new ResponseModel { IsSuccess = true, Status = 0 };
 
-            // var clientId = Request.Headers["X-Client-Id"].FirstOrDefault();
-            var clientId = "client1";
+            var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
             if (string.IsNullOrEmpty(clientId))
                 return BadRequest("ClientId header missing");
 
@@ -109,8 +107,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
 
             try
             {
-                //  var clientId = Request.Headers["X-Client-Id"].FirstOrDefault();
-                var clientId = "client1";
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
                 if (string.IsNullOrEmpty(clientId))
                     return BadRequest("ClientId header missing");
 
@@ -144,24 +141,25 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromQuery] int actionType, [FromQuery] long id)
         {
-            var response = new ResponseModel { IsSuccess = true, Status = 0, Message = "Issue at Controller Level!" };
+            var response = new ResponseModel { IsSuccess = false, Status = 0, Message = "Invalid request." };
 
             try
             {
-                var clientId = "client1";
-                //  var clientId = Request.Headers["X-Client-Id"].FirstOrDefault();
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
+
                 if (string.IsNullOrEmpty(clientId))
                     return BadRequest("ClientId header missing.");
 
                 switch (actionType)
                 {
-                    case 0: // Delete FeeHead
-                        response = await _feeHeadClient.DeleteFeeHead(id, clientId, "System"); // or pass UpdatedBy from header/body
+                    case 0: // Delete FeeHead (soft delete)
+                        response = await _feeHeadClient.DeleteFeeHead(id, clientId, "System");
                         break;
 
                     default:
                         response.IsSuccess = false;
                         response.Status = 0;
+                        response.Message = "Invalid action type.";
                         return BadRequest(response);
                 }
             }
@@ -171,10 +169,11 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
                 response.Status = -1;
                 response.Message = "Error occurred during deletion.";
                 response.Error = ex.Message;
-                Helper.Error.ErrorBLL.CreateErrorLog("FeeHeadController", "DeleteByAction", ex.ToString());
+
+                Helper.Error.ErrorBLL.CreateErrorLog("FeeHeadController", "Delete", ex.ToString());
             }
 
-            return StatusCode(response.Status == 0 ? 400 : 200, response);
+            return Ok(response);
         }
     }
 }

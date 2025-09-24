@@ -24,7 +24,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 string endpoint = ProxyConstant.FeeStructure_AddFeeStructure;
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
-                    employee_Universal_API_Host,
+                    FeeManagement_Universal_API_Host,
                     endpoint,
                     HttpMethod.Post,
                     dto
@@ -45,7 +45,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 string endpoint = ProxyConstant.FeeStructure_UpdateFeeStructure;
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
-                    employee_Universal_API_Host,
+                    FeeManagement_Universal_API_Host,
                     endpoint,
                     HttpMethod.Put,
                     dto
@@ -66,7 +66,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 string endpoint = string.Format(ProxyConstant.FeeStructure_DeleteFeeStructure, fsId, updateBy);
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
-                    employee_Universal_API_Host,
+                    FeeManagement_Universal_API_Host,
                     endpoint,
                     HttpMethod.Delete,
                     null
@@ -87,7 +87,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 string endpoint = string.Format(ProxyConstant.FeeStructure_GetFeeStructureById, fsId);
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
-                    employee_Universal_API_Host,
+                    FeeManagement_Universal_API_Host,
                     endpoint,
                     HttpMethod.Get,
                     null
@@ -113,7 +113,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 string endpoint = ProxyConstant.FeeStructure_GetAllFeeStructures;
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
-                    employee_Universal_API_Host,
+                    FeeManagement_Universal_API_Host,
                     endpoint,
                     HttpMethod.Get,
                     null
@@ -139,7 +139,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 string endpoint = string.Format(ProxyConstant.FeeStructure_GetFeeStructuresByClassId, cIDFK);
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
-                    employee_Universal_API_Host,
+                    FeeManagement_Universal_API_Host,
                     endpoint,
                     HttpMethod.Get,
                     null

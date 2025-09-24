@@ -132,6 +132,8 @@ namespace SchoolApiGW.Helper
         public const string Clientstudentpost_PostUpdateStudentHeightWeightAdharNamePENEtcUDISE = "update-student-by-action/{0}";
 
         public const string Clientstudentput_UpdateStudentSession = "bulk-update-students?actionType={0}";
+
+        public const string Clientstudentpost_UpdateOldSchoolDetails = "update-old-school-details?actionType=0";
         // Add User
         public static readonly string Clientuseradd_adduser = "/api/User/add";
 

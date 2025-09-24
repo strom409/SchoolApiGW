@@ -79,7 +79,7 @@
         public string? PEN { get; set; }
         public string? WEIGHT { get; set; }
         public string? Height { get; set; }
-        public string? NAMEASPERADHAAR { get; set; }
+        public string? NameAsPerAadhaar { get; set; }
         public string? DOBAsPerAadhaar { get; set; }
         //public string ExamRollNo { get; set; }
 
@@ -112,6 +112,7 @@
         public string? AccountNo { get; set; }
         public string? AccountType { get; set; }
         public string? IFCCode { get; set; }
+        public string? Apaarid { get; set; }
         public int? BPLStatus { get; set; }
         public string? SDisability { get; set; }
         public string? Tehsil { get; set; }

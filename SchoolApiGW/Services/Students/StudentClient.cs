@@ -1779,7 +1779,37 @@ namespace SchoolApiGW.Services.Students
             }
         }
 
+        public async Task<ResponseModel> UpdateOldSchoolBasicDetails(OldSchoolDetailsDTO request, string clientId)
+        {
+            try
+            {
+                string formattedEndpoint = string.Format(
+                    ProxyConstant.Clientstudentpost_UpdateOldSchoolDetails, 0); // new endpoint constant
 
+                var response = await ApiHelper.ApiConnection<ResponseModel>(
+                    _httpClientFactory,
+                    student_Universal_API_Host,
+                    formattedEndpoint,
+                    HttpMethod.Put,
+                    request);
+
+                if (response.IsSuccess && response.ResponseData != null)
+                {
+                    var updatedDetails = JsonConvert.DeserializeObject<OldSchoolDetailsDTO>(
+                        response.ResponseData.ToString());
+                    response.ResponseData = updatedDetails;
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Helper.Error.ErrorBLL.CreateErrorLog("StudentClient", "UpdateOldSchoolDetailsAsync", ex.Message + " | " + ex.StackTrace);
+                throw new ApplicationException("Error occurred while updating old school details.", ex);
+            }
+        }
+
+     
     }
 
 }

@@ -481,5 +481,50 @@ namespace SchoolApiGW.Services.Students
         }
 
 
+        //      for alnoor school
+        [HttpPut("update-old-school-details")]
+        public async Task<IActionResult> UpdateOldSchoolDetails(int actionType, [FromBody] OldSchoolDetailsDTO request)
+        {
+            try
+            {
+                var response = new ResponseModel { IsSuccess = true, Status = 0, Message = "Issue at Controller Level !" };
+
+                var clientId = User.Claims.FirstOrDefault(c => c.Type == "ClientId")?.Value;
+                if (string.IsNullOrEmpty(clientId))
+                    return Unauthorized("ClientId missing");
+
+                switch (actionType)
+                {
+                    case 0: // Update Old School Basic Details
+                        response = await _studentClient.UpdateOldSchoolBasicDetails(request, clientId);
+                        break;
+
+                    default:
+                        response = new ResponseModel
+                        {
+                            IsSuccess = false,
+                            Status = 0,
+                            Message = "Invalid action type."
+                        };
+                        break;
+                }
+
+                if (response.IsSuccess)
+                    return Ok(response);
+                else
+                    return BadRequest(response);
+            }
+            catch (Exception ex)
+            {
+                Helper.Error.ErrorBLL.CreateErrorLog("StudentController", "UpdateOldSchoolDetails", ex.ToString());
+
+                return StatusCode(500, new ResponseModel
+                {
+                    IsSuccess = false,
+                    Status = -1,
+                    Error = ex.Message
+                });
+            }
+        }
     }
 }
