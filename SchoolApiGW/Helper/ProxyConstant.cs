@@ -94,6 +94,7 @@ namespace SchoolApiGW.Helper
         public const string District_GetAll = "api/district/district-master?actionType=0";
         public const string District_GetByStateId = "api/district/district-master?actionType=1&param={0}";
         public const string State_GetAll = "api/District/district-master?actionType=2";
+        public const string StudentAuditByDate = "/student?actionType=22&param={0}";
 
         // Update Student
         public const string Clientstudentpost_UpdateStudent = "/update-student?actionType={0}";
@@ -479,7 +480,7 @@ namespace SchoolApiGW.Helper
         public const string FeeHead_GetFeeHeadById = "/api/FeeHead/fetch?actionType=1&param={0}";
         public const string FeeHead_GetAllFeeHeads = "/api/FeeHead/fetch?actionType=0";
         public const string FeeHead_GetFeeHeadsByType = "/api/FeeHead/fetch?actionType=2&param={0}";
-        public const string FeeHead_DeleteFeeHead = "/api/FeeHead/delete?actionType=0&id=0";
+        public const string FeeHead_DeleteFeeHead = "/api/FeeHead/delete?actionType=0&id={0}";
 
         // fee structure endpoints
         public const string FeeStructure_AddFeeStructure = "/api/FeeStructure/add-info?actionType=0";

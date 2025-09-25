@@ -117,6 +117,9 @@
         public string? SDisability { get; set; }
         public string? Tehsil { get; set; }
         public string? TehsilPer { get; set; }
+        public string? BPLCategory { get; set; }
+        public bool? CWSNStatus { get; set; }
+        public string? Category { get; set; }
         public IFormFile? StudentPhoto { get; set; }
         public IFormFile? FatherPhoto { get; set; }
         public IFormFile? MotherPhoto { get; set; }

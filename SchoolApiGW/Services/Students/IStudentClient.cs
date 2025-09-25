@@ -26,6 +26,7 @@ namespace SchoolApiGW.Services.Students
         Task<ResponseModel> GetAllStudentsOnSessionAsync(string session, string clientId);
         Task<ResponseModel> GetNextAdmissionNoAsync(string clientId);
         Task<ResponseModel> GetAllSessions(string clientId);
+        Task<ResponseModel> GetStudentAuditByDateAsync(string date, string clientId);
         Task<ResponseModel> AttendanceDashboardForDate(string session, string clientId);
         Task<ResponseModel> UpdateStudentAsync(UpdateStudentRequestDTO request, string clientId);
         Task<ResponseModel> UpdateParentDetailAsync(UpdateStudentRequestDTO request, string clientId);

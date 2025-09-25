@@ -213,7 +213,12 @@ namespace SchoolApiGW.Services.Students
 
                         // Call the service method that returns attendance dashboard data
                         return Ok(await _studentClient.AttendanceDashboardForDate(param, clientId));
+                    case 22: // Get Student & StudentInfo audit details by date
+                        if (string.IsNullOrEmpty(param))
+                            return BadRequest(new ResponseModel { IsSuccess = true, Status = 0 });
 
+                        // param = date string (e.g. "2025-09-25")
+                        return Ok(await _studentClient.GetStudentAuditByDateAsync(param, clientId));
                     default:
                         return BadRequest(new ResponseModel { IsSuccess = true, Status = 0 });
                 }

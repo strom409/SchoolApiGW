@@ -141,7 +141,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromQuery] int actionType, [FromQuery] long id)
         {
-            var response = new ResponseModel { IsSuccess = false, Status = 0, Message = "Invalid request." };
+            var response = new ResponseModel { IsSuccess = true, Status = 0, Message = "Invalid request." };
 
             try
             {
@@ -153,7 +153,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
                 switch (actionType)
                 {
                     case 0: // Delete FeeHead (soft delete)
-                        response = await _feeHeadClient.DeleteFeeHead(id, clientId, "System");
+                        response = await _feeHeadClient.DeleteFeeHead(id, clientId);
                         break;
 
                     default:

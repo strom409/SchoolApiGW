@@ -1809,7 +1809,41 @@ namespace SchoolApiGW.Services.Students
             }
         }
 
-     
+
+        public async Task<ResponseModel> GetStudentAuditByDateAsync(string date, string clientId)
+        {
+            try
+            {
+                string formattedEndpoint = string.Format(ProxyConstant.StudentAuditByDate, date);
+
+                var response = await ApiHelper.ApiConnection<ResponseModel>(
+                    _httpClientFactory,
+                    student_Universal_API_Host, // Base URL, e.g., http://localhost:59326
+                    formattedEndpoint,
+                    HttpMethod.Get,
+                    null
+                );
+
+                if (response.IsSuccess && response.ResponseData != null)
+                {
+                    var auditList = JsonConvert.DeserializeObject<List<StudentDTO>>(response.ResponseData.ToString());
+                    response.ResponseData = auditList;
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Helper.Error.ErrorBLL.CreateErrorLog(
+                    "StudentClient",
+                    "GetStudentAuditByDateAsync",
+                    ex.Message + " | " + ex.StackTrace
+                );
+                throw new ApplicationException($"Error occurred while fetching student audit for date: {date}.", ex);
+            }
+        }
+
+
     }
 
 }

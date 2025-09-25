@@ -58,11 +58,11 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
             }
         }
 
-        public async Task<ResponseModel> DeleteFeeHead(long fHID, string clientId, string updatedBy)
+        public async Task<ResponseModel> DeleteFeeHead(long fHID, string clientId)
         {
             try
             {
-                string endpoint = string.Format(ProxyConstant.FeeHead_DeleteFeeHead, fHID, updatedBy);
+                string endpoint = string.Format(ProxyConstant.FeeHead_DeleteFeeHead, fHID);
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
                     FeeManagement_Universal_API_Host,
