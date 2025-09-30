@@ -57,28 +57,6 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
                 throw new ApplicationException("Error occurred while updating fee head.", ex);
             }
         }
-
-        public async Task<ResponseModel> DeleteFeeHead(long fHID, string clientId)
-        {
-            try
-            {
-                string endpoint = string.Format(ProxyConstant.FeeHead_DeleteFeeHead, fHID);
-                var response = await ApiHelper.ApiConnection<ResponseModel>(
-                    _httpClientFactory,
-                    FeeManagement_Universal_API_Host,
-                    endpoint,
-                    HttpMethod.Delete,
-                    null
-                );
-                return response;
-            }
-            catch (Exception ex)
-            {
-                Helper.Error.ErrorBLL.CreateErrorLog("FeeHeadClient", "DeleteFeeHead", ex.Message + " | " + ex.StackTrace);
-                throw new ApplicationException("Error occurred while deleting fee head.", ex);
-            }
-        }
-
         public async Task<ResponseModel> GetFeeHeadById(long fHID, string clientId)
         {
             try
@@ -154,6 +132,27 @@ namespace SchoolApiGW.Services.FeeManagement.FeeHead
             {
                 Helper.Error.ErrorBLL.CreateErrorLog("FeeHeadClient", "GetFeeHeadsByType", ex.Message + " | " + ex.StackTrace);
                 throw new ApplicationException($"Error occurred while fetching fee heads by type: {fHType}.", ex);
+            }
+        }
+
+        public async Task<ResponseModel> DeleteFeeHead(long fHID, string clientId)
+        {
+            try
+            {
+                string endpoint = string.Format(ProxyConstant.FeeHead_DeleteFeeHead, fHID);
+                var response = await ApiHelper.ApiConnection<ResponseModel>(
+                    _httpClientFactory,
+                    FeeManagement_Universal_API_Host,
+                    endpoint,
+                    HttpMethod.Delete,
+                    null
+                );
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Helper.Error.ErrorBLL.CreateErrorLog("FeeHeadClient", "DeleteFeeHead", ex.Message + " | " + ex.StackTrace);
+                throw new ApplicationException("Error occurred while deleting fee head.", ex);
             }
         }
     }

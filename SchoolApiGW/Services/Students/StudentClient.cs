@@ -405,7 +405,8 @@ namespace SchoolApiGW.Services.Students
             }
         }
 
-        public async Task<ResponseModel> GetAllStudentsOnSectionIDAsync(string sectionId, string clientId)
+        public async Task<ResponseModel> GetAllStudentsOnSectionIDAsync(string sectionId
+            , string clientId)
         {
             try
             {

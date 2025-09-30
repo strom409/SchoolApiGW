@@ -65,7 +65,12 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 switch (actionType)
                 {
                     case 0: // Get All FeeStructures
-                        response = await _feeStructureClient.GetAllFeeStructures(clientId);
+                   
+                        var currentsession = param; // param from query is already string
+                        if (string.IsNullOrEmpty(currentsession))
+                            return BadRequest("CurrentSession is required.");
+                       
+                        response = await _feeStructureClient.GetAllFeeStructures(clientId,currentsession);
                         break;
 
                     case 1: // Get FeeStructure By ID
@@ -84,6 +89,26 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                         }
 
                         response = await _feeStructureClient.GetFeeStructuresByClassId(cIdFk, clientId);
+                        break;
+                    case 3: // Get FeeStructure By ClassID & FHIDFK
+                        if (string.IsNullOrEmpty(param))
+                        {
+                            response.IsSuccess = false;
+                            response.Message = "Parameter (ClassID,FHIDFK) is required.";
+                            return BadRequest(response);
+                        }
+
+                        var parts = param.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                        if (parts.Length < 2
+                            || !long.TryParse(parts[0].Trim(), out long classId)
+                            || !long.TryParse(parts[1].Trim(), out long fhId))
+                        {
+                            response.IsSuccess = false;
+                            response.Message = "Invalid parameter format. Use ClassID,FHIDFK.";
+                            return BadRequest(response);
+                        }
+
+                        response = await _feeStructureClient.GetFeeStructureByClassAndFeeHead(classId, fhId, clientId);
                         break;
                     default:
                         return BadRequest(response);
@@ -153,7 +178,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 switch (actionType)
                 {
                     case 0: // Delete FeeStructure
-                        response = await _feeStructureClient.DeleteFeeStructure(id, "System", clientId); // pass UpdatedBy from header/body if needed
+                        response = await _feeStructureClient.DeleteFeeStructure(id, clientId); // pass UpdatedBy from header/body if needed
                         break;
 
                     default:

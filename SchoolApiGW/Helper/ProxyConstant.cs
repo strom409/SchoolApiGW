@@ -486,10 +486,19 @@ namespace SchoolApiGW.Helper
         public const string FeeStructure_AddFeeStructure = "/api/FeeStructure/add-info?actionType=0";
         public const string FeeStructure_UpdateFeeStructure = "/api/FeeStructure/update-by-action?actionType=0";
         public const string FeeStructure_GetFeeStructureById = "/api/FeeStructure/fetch?actionType=1&param={0}";
-        public const string FeeStructure_GetAllFeeStructures = "/api/FeeStructure/fetch?actionType=0";
+        public const string FeeStructure_GetAllFeeStructures = "/api/FeeStructure/fetch?actionType=0&param={0}";
         public const string FeeStructure_GetFeeStructuresByClassId = "/api/FeeStructure/fetch?actionType=2&param={0}";
-        public const string FeeStructure_DeleteFeeStructure = "api/FeeStructure/delete?actionType=0&id=0";
+        public const string FeeStructure_GetByClassAndFeeHead = "/api/FeeStructure/fetch?actionType=3&param={0},{1}";
+        public const string FeeStructure_DeleteFeeStructure = "api/FeeStructure/delete?actionType=0&id={0}";
 
+        //  FeeDue endpoints
+        public const string FeeDue_AddFeeDue = "api/FeeDue/add?actionType=0";          
+        public const string FeeDue_DeleteFeeDue = "/api/FeeDue/delete?actionType=0&feeDueID=0"; 
+        public const string FeeDue_GetByAdmissionNo = "/api/FeeDue/fetch?actionType=1&param={0},{1}"; 
+        public const string FeeDue_GetByClassId = "/api/FeeDue/fetch?actionType=2&param={0}"; 
+        public const string FeeDue_GetByStudentName = "/api/FeeDue/fetch?actionType=0&param={0}";
+        public const string Month_GetAll = "/api/FeeDue/fetch?actionType=3";
+        public const string FeeDue_UpdateFeeDue = "/api/feemanagement/fee-due/update";
 
     }
 }

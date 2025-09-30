@@ -14,6 +14,7 @@ using SchoolApiGW.Services.Designation;
 using SchoolApiGW.Services.District;
 using SchoolApiGW.Services.Employee;
 using SchoolApiGW.Services.EmpStatus;
+using SchoolApiGW.Services.FeeManagement.FeeDue;
 using SchoolApiGW.Services.FeeManagement.FeeHead;
 using SchoolApiGW.Services.FeeManagement.FeeStructure;
 using SchoolApiGW.Services.HT;
@@ -95,9 +96,10 @@ builder.Services.AddScoped<IUnitsClient, UnitsClient>();
 builder.Services.AddScoped<IMaxMarksClient, MaxMarksClient>();
 builder.Services.AddScoped<IMarksClient, MarksClient>();
 builder.Services.AddScoped<IOptionalMaxMarksClient, OptionalMaxMarksClient>();
+builder.Services.AddScoped<IOptionalMarksClient, OptionalMarksClient>();
 builder.Services.AddScoped<IFeeHeadClient, FeeHeadClient>();
 builder.Services.AddScoped<IFeeStructureClient, FeeStructureClient>();
-builder.Services.AddScoped<IOptionalMarksClient, OptionalMarksClient>();
+builder.Services.AddScoped<IFeeDueClient, FeeDueClient>();
 builder.Services.AddScoped<ErrorBLL>();
 
 

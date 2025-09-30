@@ -59,11 +59,11 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
             }
         }
 
-        public async Task<ResponseModel> DeleteFeeStructure(long fsId, string updateBy, string clientId)
+        public async Task<ResponseModel> DeleteFeeStructure(long fsId, string clientId)
         {
             try
             {
-                string endpoint = string.Format(ProxyConstant.FeeStructure_DeleteFeeStructure, fsId, updateBy);
+                string endpoint = string.Format(ProxyConstant.FeeStructure_DeleteFeeStructure, fsId);
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
                     FeeManagement_Universal_API_Host,
@@ -106,11 +106,14 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
             }
         }
 
-        public async Task<ResponseModel> GetAllFeeStructures(string clientId)
+        public async Task<ResponseModel> GetAllFeeStructures(string clientId, string currentSession)
         {
             try
             {
-                string endpoint = ProxyConstant.FeeStructure_GetAllFeeStructures;
+                // Add currentSession as query parameter
+                string endpoint = string.Format(ProxyConstant.FeeStructure_GetAllFeeStructures, currentSession);
+               // string endpoint = $"{ProxyConstant.FeeStructure_GetAllFeeStructures}?currentSession={currentSession}";
+
                 var response = await ApiHelper.ApiConnection<ResponseModel>(
                     _httpClientFactory,
                     FeeManagement_Universal_API_Host,
@@ -118,19 +121,26 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                     HttpMethod.Get,
                     null
                 );
+
                 if (response.IsSuccess && response.ResponseData != null)
                 {
                     var list = JsonConvert.DeserializeObject<List<FeeStructureDto>>(response.ResponseData.ToString());
                     response.ResponseData = list;
                 }
+
                 return response;
             }
             catch (Exception ex)
             {
-                Helper.Error.ErrorBLL.CreateErrorLog("FeeStructureClient", "GetAllFeeStructures", ex.Message + " | " + ex.StackTrace);
+                Helper.Error.ErrorBLL.CreateErrorLog(
+                    "FeeStructureClient",
+                    "GetAllFeeStructures",
+                    ex.Message + " | " + ex.StackTrace
+                );
                 throw new ApplicationException("Error occurred while fetching all fee structures.", ex);
             }
         }
+
 
         public async Task<ResponseModel> GetFeeStructuresByClassId(long cIDFK, string clientId)
         {
@@ -157,5 +167,42 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 throw new ApplicationException($"Error occurred while fetching fee structures for class ID: {cIDFK}.", ex);
             }
         }
+
+        public async Task<ResponseModel> GetFeeStructureByClassAndFeeHead(long classId, long fhId, string clientId)
+        {
+            try
+            {
+                // Build the endpoint URL using the ProxyConstant
+                string endpoint = string.Format(ProxyConstant.FeeStructure_GetByClassAndFeeHead, classId, fhId);
+
+                // Call the microservice API
+                var response = await ApiHelper.ApiConnection<ResponseModel>(
+                    _httpClientFactory,
+                    FeeManagement_Universal_API_Host,
+                    endpoint,
+                    HttpMethod.Get,
+                    null
+                );
+
+                // Deserialize the response data into the DTO list
+                if (response.IsSuccess && response.ResponseData != null)
+                {
+                    var list = JsonConvert.DeserializeObject<List<FeeStructureDto>>(response.ResponseData.ToString());
+                    response.ResponseData = list;
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Helper.Error.ErrorBLL.CreateErrorLog(
+                    "FeeStructureClient",
+                    "GetFeeStructureByClassAndFeeHead",
+                    ex.Message + " | " + ex.StackTrace
+                );
+                throw new ApplicationException($"Error occurred while fetching fee structure for ClassID: {classId} and FHID: {fhId}.", ex);
+            }
+        }
+
     }
 }

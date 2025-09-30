@@ -125,6 +125,8 @@
         public string OldGrade { get; set; }
         public string OldMarks { get; set; }
         public string OldAcademicNo { get; set; }
+        public string UpdatedOn { get; set; }
+        public string SourceTable { get; set; }
 
 
     }
