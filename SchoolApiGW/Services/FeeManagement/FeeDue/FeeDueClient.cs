@@ -76,7 +76,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeDue
 
                 if (response.IsSuccess && response.ResponseData != null)
                 {
-                    var monthsList = JsonConvert.DeserializeObject<List<MonthDto>>(response.ResponseData.ToString());
+                    var monthsList = JsonConvert.DeserializeObject<List<SessionMonthDTO>>(response.ResponseData.ToString());
                     response.ResponseData = monthsList;
                 }
 

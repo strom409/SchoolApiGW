@@ -14,8 +14,8 @@ namespace SchoolApiGW.Helper
         public const string User_ChangePassword = "api/User/change-password?actionType=0";
         public const string Clientuserdelete_DeleteUser = "/api/User/Users/{0}?actionType=0";
         // for useracess management
-        public const string UserAccess_Add = "api/UserAccess/add-user-access?actionType=0";        // POST
-        public const string UserAccess_Update = "api/UserAccess/update-user-access?actionType=1";  // PUT
+        public const string UserAccess_Add = "api/UserAccess/add-user-access?actionType=0";        
+        public const string UserAccess_Update = "api/UserAccess/update-user-access?actionType=1";  
         public const string UserTypes_GetUserTypes = "api/UserAccess/get-user-types?actionType=0";
         public const string UserAccess_Delete = "api/UserAccess/delete-user-access?actionType={0}&uIDFK={1}";
 
@@ -499,6 +499,15 @@ namespace SchoolApiGW.Helper
         public const string FeeDue_GetByStudentName = "/api/FeeDue/fetch?actionType=0&param={0}";
         public const string Month_GetAll = "/api/FeeDue/fetch?actionType=3";
         public const string FeeDue_UpdateFeeDue = "/api/feemanagement/fee-due/update";
+
+        // FeeDueRebate
+        public const string FeeDueRebate_Add = "api/FeeDueRebate/add-info?actionType=0";
+        public const string FeeDueRebate_Update = "api/FeeDueRebate/update-by-action?actionType=0";
+        public const string FeeDueRebate_Delete = "api/FeeDueRebate/delete?actionType=0&id={0}";
+        public const string FeeDueRebate_GetFeeDueByStudentName = "api/FeeDueRebate/get-info?actionType=0&param={0}";
+        public const string FeeDueRebate_GetFeeDueRebateByAdmissionNo = "api/FeeDueRebate/get-info?actionType=1&param={0},{1}";
+        public const string FeeDueRebate_GetByClassId = "api/FeeDueRebate/get-info?actionType=2&param={0}";
+
 
     }
 }

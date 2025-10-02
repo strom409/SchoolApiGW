@@ -187,7 +187,7 @@ namespace SchoolApiGW.Services.FeeManagement.FeeStructure
                 // Deserialize the response data into the DTO list
                 if (response.IsSuccess && response.ResponseData != null)
                 {
-                    var list = JsonConvert.DeserializeObject<List<FeeStructureDto>>(response.ResponseData.ToString());
+                    var list = JsonConvert.DeserializeObject<FeeStructureDto>(response.ResponseData.ToString());
                     response.ResponseData = list;
                 }
 
